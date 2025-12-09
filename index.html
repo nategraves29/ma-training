@@ -282,9 +282,15 @@
     top: 0;
     z-index: 999;
     background: #0077B6;
-    padding: 10px 0;
+    padding: 18px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: padding 0.25s ease, background 0.25s ease;
 }
+
+.top-nav.shrink {
+    padding: 6px 0; /* smaller once scrolled */
+    background: #005f8f; /* slightly darker if you want */
+}        
 
 .top-nav ul {
     list-style: none;
