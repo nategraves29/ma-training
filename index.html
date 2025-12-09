@@ -275,20 +275,70 @@
             font-weight: bold;
             font-size: 1.2em;
         }
+
+        /* Top Navigation Bar */
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #0077B6;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.top-nav li a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.top-nav li a:hover {
+    background: #00A0DC;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+<nav class="top-nav">
+    <ul>
+        <li><a href="#welcome">Welcome</a></li>
+        <li><a href="#day1">Day 1</a></li>
+        <li><a href="#day2">Day 2</a></li>
+        <li><a href="#day3">Day 3</a></li>
+        <li><a href="#day4">Day 4</a></li>
+        <li><a href="#day5">Day 5</a></li>
+        <li><a href="#certification">Certification</a></li>
+    </ul>
+</nav>
     <div class="container">
         <div class="header">
             <h1>MEMBER ASSOCIATE TRAINING GUIDE</h1>
             <div class="module-subtitle">Your 5-Day Journey to MA Excellence</div>
         </div>
 
-        <h2>WELCOME TO SCENTHOUND!</h2>
+        <h2 id="welcome">WELCOME TO SCENTHOUND!</h2>
         <p class="intro-text">Congratulations on joining the Scenthound team! Over the next five days, you'll learn everything you need to become a confident and capable Member Associate. This guide outlines what you'll be learning each day. Use it to prepare, take notes, and reference throughout your training. By Day 5, you'll be certified and ready to work independently!</p>
 
         <!-- DAY 1 -->
-        <div class="day-header">
+        <div class="day-header" id="day1">
             <h2>DAY 1</h2>
             <div class="day-subtitle">Drop Off and Pick Up Fundamentals</div>
         </div>
@@ -394,7 +444,7 @@
         </div>
 
         <!-- DAY 2 -->
-        <div class="day-header">
+        <div class="day-header" id="day2">
             <h2>DAY 2</h2>
             <div class="day-subtitle">Reinforcing Fundamentals & FOSA Training</div>
         </div>
@@ -465,7 +515,7 @@
         </div>
 
         <!-- DAY 3 -->
-        <div class="day-header">
+        <div class="day-header" id="day3">
             <h2>DAY 3</h2>
             <div class="day-subtitle">Building Independence & Trial Appointments</div>
         </div>
@@ -606,7 +656,7 @@
         </div>
 
         <!-- DAY 4 -->
-        <div class="day-header">
+        <div class="day-header" id="day4">
             <h2>DAY 4</h2>
             <div class="day-subtitle">Training Wheels - Building Confidence</div>
         </div>
@@ -668,7 +718,7 @@
         </div>
 
         <!-- DAY 5 -->
-        <div class="day-header">
+        <div class="day-header" id="day5">
             <h2>DAY 5</h2>
             <div class="day-subtitle">Training Wheels Off - Certification Day!</div>
         </div>
@@ -720,7 +770,7 @@
             <p style="font-size: 1em;">You're now ready to provide exceptional service to our pet parents and their furry family members. Welcome to the team!</p>
         </div>
 
-        <h2>YOUR CERTIFICATION CHECKLIST</h2>
+        <h2 id="certification">YOUR CERTIFICATION CHECKLIST</h2>
         <p>Use this checklist to track your progress throughout the week. By the end of Day 5, you should be able to confidently demonstrate all of these skills:</p>
 
         <div class="objectives-box">
