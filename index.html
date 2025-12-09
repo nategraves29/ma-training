@@ -11,10 +11,41 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 100%;
-            margin: 0;
-            padding: 0;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px;
             background: #f8f8f8;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .day-header {
+                page-break-before: always;
+                break-before: page;
+            }
+            
+            .day-header:first-of-type {
+                page-break-before: avoid;
+                break-before: avoid;
+            }
+            
+            h2, h3, h4 {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+            
+            .objectives-box, .tools-box, .process-box, .what-to-learn, .scenario-box {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .recap-box {
+                page-break-after: always;
+                break-after: page;
+            }
         }
         
         .container {
@@ -130,7 +161,7 @@
             border-radius: 8px;
         }
         
-        .training-steps {
+        .what-to-learn {
             background: #f8f8f8;
             padding: 20px;
             margin: 20px 0;
@@ -138,7 +169,7 @@
             border-left: 4px solid #0077B6;
         }
         
-        .training-steps h4 {
+        .what-to-learn h4 {
             color: #0077B6;
             margin-top: 0;
         }
@@ -222,82 +253,71 @@
             color: #00A0DC;
             margin-top: 0;
         }
-      @media print {
-    body {
-        background: white;
-    }
-    
-    .day-header {
-        page-break-before: always;
-        break-before: page;
-    }
-    
-    /*.day-header:first-of-type {
-        page-break-before: avoid;
-        break-before: avoid;
-    }
-    
-    h2, h3, h4 {
-        page-break-after: avoid;
-        break-after: avoid;
-    }
-    
-    .objectives-box, .tools-box, .process-box, .training-steps, .scenario-box {
-        page-break-inside: avoid;
-        break-inside: avoid;
-    }
-    
-    .recap-box {
-        page-break-after: always;
-        break-after: page;
-    }*/
-}
 
-      
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 12px 15px 12px 45px;
+            margin: 10px 0;
+            background: #f8f8f8;
+            border-radius: 6px;
+            position: relative;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 15px;
+            color: #00A0DC;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>MEMBER ASSOCIATE TRAINING GUIDE</h1>
-            <div class="module-subtitle">5-Day Comprehensive Training Program</div>
+            <div class="module-subtitle">Your 5-Day Journey to MA Excellence</div>
         </div>
 
-        <h2>PROGRAM OVERVIEW</h2>
-        <p class="intro-text">This five-day training program will prepare you to excel as a Member Associate at Scenthound. You'll learn everything from customer interactions and booking systems to membership sales and handling challenging situations. By the end of Day 5, you'll be certified and ready to work independently.</p>
+        <h2>WELCOME TO SCENTHOUND!</h2>
+        <p class="intro-text">Congratulations on joining the Scenthound team! Over the next five days, you'll learn everything you need to become a confident and capable Member Associate. This guide outlines what you'll be learning each day. Use it to prepare, take notes, and reference throughout your training. By Day 5, you'll be certified and ready to work independently!</p>
 
         <!-- DAY 1 -->
         <div class="day-header">
             <h2>DAY 1</h2>
-            <div class="day-subtitle">Drop Off and Pick Up / FOSA Basics</div>
+            <div class="day-subtitle">Drop Off and Pick Up Fundamentals</div>
         </div>
 
         <div class="objectives-box">
-            <h4>Training Objectives Today:</h4>
+            <h4>What You'll Learn Today:</h4>
             <ul>
-                <li>Dog handoffs</li>
-                <li>Kennel Management</li>
-                <li>Scenter Experience Map</li>
-                <li>Menu boards</li>
-                <li>Lobby etiquette</li>
-                <li>Knowledge wall</li>
-                <li>MyTime schedule</li>
-                <li>Drop off/Pick up process</li>
-                <li>Member engagement</li>
-                <li>Membership sales</li>
-                <li>House rules</li>
+                <li>How to safely handle dog handoffs</li>
+                <li>Kennel management basics</li>
+                <li>Understanding the Scenter Experience Map</li>
+                <li>How to use menu boards and the knowledge wall</li>
+                <li>Proper lobby etiquette</li>
+                <li>How to navigate MyTime schedule</li>
+                <li>Complete drop off and pick up processes</li>
+                <li>Member engagement techniques</li>
+                <li>Introduction to membership sales</li>
+                <li>House rules and policies</li>
             </ul>
         </div>
 
-        <h3>Part 1: Drop Off</h3>
+        <h3>Drop Off Process</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>Tools You'll Be Using:</h4>
             <ul>
                 <li>Employee Experience Map</li>
                 <li>Brand DNA</li>
                 <li>Scenter Experience Map</li>
-                <li>Laminates</li>
+                <li>Laminates (quick reference guides)</li>
                 <li>Daily Checklists</li>
                 <li>MyTime Symbol Quick Guide</li>
                 <li>Knowledge Wall</li>
@@ -306,35 +326,35 @@
         </div>
 
         <div class="process-box">
-            <h4>Drop Off Process for Members:</h4>
+            <h4>The Drop Off Process (What You'll Practice):</h4>
             <ol>
-                <li><strong>Stand and greet</strong> customer by name when they walk in, then greet pet</li>
-                <li><strong>Quick assessment</strong></li>
-                <li><strong>Confirm</strong> services and time</li>
-                <li><strong>Confirm</strong> contact info</li>
-                <li><strong>Transfer and take</strong> dog back</li>
-                <li><strong>Weight</strong></li>
-                <li><strong>Into kennel</strong></li>
+                <li><strong>Stand and greet</strong> the customer by name when they walk in, then greet their pet</li>
+                <li><strong>Quick assessment</strong> - observe the dog's demeanor and condition</li>
+                <li><strong>Confirm</strong> services and estimated completion time</li>
+                <li><strong>Confirm</strong> contact information</li>
+                <li><strong>Transfer and take</strong> the dog to the back</li>
+                <li><strong>Weigh</strong> the dog</li>
+                <li><strong>Place</strong> the dog in their kennel</li>
             </ol>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps for Drop Off:</h4>
+        <div class="what-to-learn">
+            <h4>Today's Activities:</h4>
             <ul>
-                <li>Start by going over Member Experience Map and FOS tools</li>
-                <li>Give a quick breakdown of what the drop off process for a member is supposed to look like</li>
-                <li>Manager and MA do a quick role play and allow for questions and interjections - take your time and explain each step as you are doing it</li>
-                <li>Shadow a couple of drop offs</li>
-                <li>Have a quick debrief about what you saw, what you thought worked, what maybe we could improve</li>
+                <li>Review the Member Experience Map and front-of-store (FOS) tools with your trainer</li>
+                <li>Watch your trainer demonstrate a drop off</li>
+                <li>Practice through roleplay with your trainer</li>
+                <li>Shadow several real drop offs</li>
+                <li>Debrief with your trainer about what you observed</li>
             </ul>
         </div>
 
-        <h3>Part 2: Pick Up</h3>
+        <h3>Pick Up Process</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>Tools You'll Be Using:</h4>
             <ul>
-                <li>SCENT Check</li>
+                <li>SCENT Check reports</li>
                 <li>Scenter Experience Map</li>
                 <li>Laminates</li>
                 <li>Knowledge Wall</li>
@@ -343,63 +363,70 @@
         </div>
 
         <div class="process-box">
-            <h4>Pick Up Process for Members:</h4>
+            <h4>The Pick Up Process (What You'll Practice):</h4>
             <ol>
-                <li><strong>Stand to greet</strong> pet parent</li>
-                <li><strong>Go over</strong> SCENT check</li>
-                <li><strong>Make</strong> relevant recommendations</li>
-                <li><strong>Check out and rebook</strong></li>
-                <li><strong>Bring dog out</strong></li>
+                <li><strong>Stand to greet</strong> the pet parent</li>
+                <li><strong>Go over</strong> their dog's SCENT check results</li>
+                <li><strong>Make</strong> relevant product and service recommendations</li>
+                <li><strong>Check out and rebook</strong> their next appointment</li>
+                <li><strong>Bring</strong> their dog out</li>
             </ol>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps for Pick Up:</h4>
+        <div class="what-to-learn">
+            <h4>Today's Activities:</h4>
             <ul>
-                <li>Go over house rules</li>
-                <li>Give an intro to MyTime booking - show them how to book a new appointment and do basic navigation</li>
-                <li>Give a quick breakdown of what the pick-up process for a member is supposed to look like</li>
-                <li>Chat about mid-appointment texts and being able to keep an eye on time while also tracking FOSA tasks</li>
-                <li>Have Manager and MA roleplay a pick up and allow for questions and interjections - take your time and explain each step</li>
-                <li>Here we should be going over how to talk about SCENT score, how to recommend products and add-on services, and how to rebook appointments</li>
-                <li>Shadow a couple of pick ups</li>
-                <li>Have a quick debrief about what you saw, what you thought worked, what maybe we could improve</li>
+                <li>Learn house rules and policies</li>
+                <li>Get introduced to MyTime booking system - learn basic navigation and how to book appointments</li>
+                <li>Learn about mid-appointment texts and tracking FOSA tasks</li>
+                <li>Watch your trainer demonstrate a pick up</li>
+                <li>Practice how to discuss SCENT scores</li>
+                <li>Learn how to recommend products and add-on services</li>
+                <li>Practice rebooking appointments</li>
+                <li>Shadow several real pick ups</li>
+                <li>Debrief with your trainer</li>
             </ul>
         </div>
 
         <div class="recap-box">
-            <h3>END OF DAY RECAP</h3>
-            <p>Review daily learning and temp check</p>
+            <h3>END OF DAY 1 - REFLECTION</h3>
+            <p>Take a moment to think about what you learned today. What felt natural? What do you want to practice more? Jot down any questions for tomorrow.</p>
         </div>
 
         <!-- DAY 2 -->
         <div class="day-header">
             <h2>DAY 2</h2>
-            <div class="day-subtitle">Drop Off and Pick Up Review / FOSA Basics</div>
+            <div class="day-subtitle">Reinforcing Fundamentals & FOSA Training</div>
         </div>
 
         <div class="objectives-box">
-            <h4>Training Objectives Today:</h4>
+            <h4>What You'll Learn Today:</h4>
             <ul>
-                <li>Dog handoffs</li>
-                <li>Kennel Management</li>
-                <li>Scenter Experience Map</li>
-                <li>Menu boards</li>
-                <li>Lobby etiquette</li>
-                <li>Knowledge wall</li>
-                <li>MyTime schedule</li>
-                <li>Handling the Telephone</li>
-                <li>Drop off/Pick up process</li>
-                <li>Member engagement</li>
-                <li>Membership sales</li>
-                <li>House rules</li>
+                <li>Reinforce drop off and pick up processes</li>
+                <li>Dive deeper into kennel management</li>
+                <li>Learn how to handle telephone inquiries</li>
+                <li>Master the FOSA system</li>
+                <li>Practice booking appointments</li>
+                <li>Learn to make effective calls to New Leads and Active Trial Leads</li>
             </ul>
         </div>
 
-        <h3>Part 3: Drop Off/Pick Up Review, FOSA Training</h3>
+        <h3>Morning Review</h3>
+
+        <div class="what-to-learn">
+            <h4>You'll Review and Practice:</h4>
+            <ul>
+                <li>Drop off basics - then roleplay to reinforce</li>
+                <li>House rules review</li>
+                <li>Booking in MyTime review</li>
+                <li>Pick up basics - then roleplay to reinforce</li>
+            </ul>
+        </div>
+
+        <h3>FOSA System Training</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>New Tools You'll Learn:</h4>
             <ul>
                 <li>FOSA SOP Document</li>
                 <li>FOSA App</li>
@@ -408,299 +435,319 @@
             </ul>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps to Review Drop Off/Pick Up:</h4>
+        <div class="what-to-learn">
+            <h4>What You'll Learn About FOSA:</h4>
             <ul>
-                <li>Review drop off basics, then roleplay drop off basics</li>
-                <li>Review house rules</li>
-                <li>Review booking in MyTime</li>
-                <li>Review pick up basics, then roleplay pick up basics</li>
+                <li>How we use FOSA, MyTime, Zoho, email, and scripts to ensure smooth operations</li>
+                <li>Practice logging in and out of all systems until you're comfortable</li>
+                <li>Learn the Telephone Inquiry process</li>
+                <li>Go through the FOSA Procedure guide step-by-step</li>
+                <li>Watch your trainer make a call to a New Lead</li>
+                <li>Practice booking appointments using test accounts (you'll delete these after practice)</li>
+                <li>Practice leaving professional voicemails that sound natural, not robotic</li>
+                <li><strong>Make your first New Lead call!</strong></li>
+                <li>Learn how to handle Active Trial Leads</li>
+                <li>Watch your trainer make a call to an Active Trial Lead</li>
+                <li>Practice with your trainer through roleplay</li>
+                <li>Practice booking more appointments (repetition builds muscle memory!)</li>
+                <li><strong>Make your first Active Trial Lead call!</strong></li>
+                <li>Learn the other FOSA tasks and complete them if there are enough in the system</li>
             </ul>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps for FOSA:</h4>
-            <ul>
-                <li>Start by explaining what resources we use up front (FOSA, MyTime, Zoho, email, and scripts) and their role in ensuring a smooth FOS experience</li>
-                <li>Take some time to make sure everyone can log in and out of all systems and is comfortable doing so</li>
-                <li>Go over Telephone Inquiry process</li>
-                <li>Go over FOSA Procedure guide - explain each step briefly and show how to do in the system</li>
-                <li>Start with new leads, and have Manager and MA roleplay a call for a new lead wanting to book an appointment - take the time to explain each step and allow for questions and interjections</li>
-                <li>Have each member practice booking an appointment on a future date with Reilly or Farrah's account to physically go through the process (make sure we are deleting these appointments as well so we aren't filling up the schedule!)</li>
-                <li>Do some voicemail roleplaying as well - engaging conversations are our bread and butter but being able to leave solid voicemails without sounding like a robot is an important skill to get comfortable with</li>
-                <li>Have each member do a New Lead call</li>
-                <li>Follow up by going through the same process with Active Trial Leads</li>
-                <li>Manager and MA roleplay a call for an active trial lead wanting to book an appointment - take the time to explain each step and allow for questions and interjections</li>
-                <li>Follow up by pairing managers with newbies for some roleplaying to allow for practice and feedback</li>
-                <li>Have each member practice booking an appointment on a future date (yes again, repetition is how we build the muscle memory!) with Reilly or Farrah's account</li>
-                <li>Have each member do an Active Trial Lead call</li>
-                <li>For the other steps, simply go through the process with them and have them show you which steps and places they need to go to complete the task</li>
-                <li>Debrief - wins, losses, reflections, and highlights!</li>
-            </ul>
+        <div class="highlight">
+            <strong>Remember:</strong> Engaging conversations are our bread and butter, but being able to leave solid voicemails without sounding like a robot is an important skill. Practice makes perfect!
         </div>
 
         <div class="recap-box">
-            <h3>END OF DAY RECAP</h3>
-            <p>Review daily learning and temp check</p>
+            <h3>END OF DAY 2 - REFLECTION</h3>
+            <p>Review the day with your trainer. Celebrate your wins, reflect on challenges, and highlight what you learned. FOSA can feel overwhelming at first - that's completely normal!</p>
         </div>
 
         <!-- DAY 3 -->
         <div class="day-header">
             <h2>DAY 3</h2>
-            <div class="day-subtitle">Independent Drop Off/Pick Up, Independent FOSA Trials</div>
+            <div class="day-subtitle">Building Independence & Trial Appointments</div>
         </div>
 
         <div class="objectives-box">
-            <h4>Training Objectives Today:</h4>
+            <h4>What You'll Learn Today:</h4>
             <ul>
-                <li>Continue practice with FOSA</li>
-                <li>Continue practice with Booking</li>
-                <li>Handle the Telephone</li>
-                <li>Drop-off process</li>
-                <li>Pick-up process</li>
-                <li>FOH Tools and Systems</li>
+                <li>Continue building confidence with FOSA</li>
+                <li>Practice booking appointments independently</li>
+                <li>Handle phone calls with less assistance</li>
+                <li>Master drop-off and pick-up processes</li>
+                <li>Learn the special Trial appointment process</li>
             </ul>
         </div>
 
-        <h3>Part 4: Drop Off/Pick Up Review</h3>
+        <h3>Morning Practice - More Independence</h3>
 
-        <div class="training-steps">
-            <h4>Training Steps for Drop Off/Pick Up Review:</h4>
+        <div class="what-to-learn">
+            <h4>What to Expect:</h4>
             <ul>
-                <li>Manager shadow newbies through drop offs and pick ups in the morning</li>
-                <li>Debrief after each drop off/pick up to reflect and give feedback</li>
-                <li>Reiterate importance of keeping track of the schedule so we can do mid-appointment texts and ensure we are having prompt pick up for pups</li>
-                <li>If extra downtime, keep roleplaying and work through more nuanced scenarios</li>
+                <li>Your trainer will shadow you (not the other way around!) during morning drop offs and pick ups</li>
+                <li>You'll debrief after each interaction to get feedback</li>
+                <li>You'll practice keeping track of the schedule for mid-appointment texts and prompt pick ups</li>
+                <li>During downtime, you'll roleplay more complex scenarios</li>
             </ul>
         </div>
 
         <div class="scenario-box">
-            <h4>Example Scenarios to Practice:</h4>
+            <h4>Complex Scenarios You'll Practice:</h4>
             <ul>
-                <li>"My dog is rabies exempt"</li>
-                <li>"I need a haircut TODAY"</li>
-                <li>"I have a severely matted doodle and I just want to come in for a bath. I can only come in at 5:30 pm, when is your next available?"</li>
+                <li><strong>Scenario 1:</strong> "My dog is rabies exempt"</li>
+                <li><strong>Scenario 2:</strong> "I need a haircut TODAY"</li>
+                <li><strong>Scenario 3:</strong> "I have a severely matted doodle and I just want to come in for a bath. I can only come in at 5:30 pm, when is your next available?"</li>
             </ul>
         </div>
 
         <div class="highlight">
-            <strong>Get them comfortable with not knowing.</strong> The goal here is not to have them learn everything, but to help them learn confidence. You may not have the answer but you know someone who does, or maybe you need to take a second to look that up. Things are always changing, and <em>Seek Growth</em> is one of our pillars - if we ever feel like we know everything, we're failing on that count. Being open and transparent is part of what makes Scenthound unique!
+            <strong>Get comfortable with not knowing everything!</strong> The goal isn't to have all the answers memorized - it's to build confidence. You may not know the answer, but you know who to ask or where to look it up. Things are always changing, and <em>Seek Growth</em> is one of our core pillars. If we ever feel like we know everything, we're failing on that count. Being open and transparent is part of what makes Scenthound unique!
         </div>
 
-        <h3>Part 5: FOSA Review</h3>
+        <h3>FOSA Practice</h3>
 
-        <div class="training-steps">
-            <h4>Training Steps:</h4>
+        <div class="what-to-learn">
+            <h4>What You'll Do:</h4>
             <ul>
-                <li>Manager shadow a couple of tasks from each segment of FOSA</li>
-                <li>Debrief after each call to reflect and give feedback</li>
+                <li>Your trainer will shadow you through several FOSA tasks</li>
+                <li>You'll debrief after each call to reflect and improve</li>
             </ul>
         </div>
 
-        <h3>Part 6: Trial Drop Off</h3>
+        <h3>Trial Drop Offs - THE MOST IMPORTANT SKILL</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>New Tools You'll Learn:</h4>
             <ul>
                 <li>Trial Guide</li>
                 <li>Trial Drop Off Guide</li>
-                <li>Knowledge Wall</li>
+                <li>Knowledge Wall (deeper dive)</li>
                 <li>Laminates</li>
             </ul>
+        </div>
+
+        <div class="important">
+            Trials are how we grow! This is how we get new members. These appointments set expectations for future visits and are critical to our success. Pay close attention!
         </div>
 
         <div class="process-box">
             <h4>Trial Drop Off Process:</h4>
             <ol>
-                <li><strong>Stand and greet</strong> customer by name when they walk in, then greet pet</li>
-                <li><strong>More thorough assessment</strong></li>
-                <li><strong>Start with waiver</strong></li>
-                <li><strong>Explain services</strong> and emphasize towel dry, give Future Member brochure</li>
-                <li><strong>Confirm shampoo</strong></li>
+                <li><strong>Stand and greet</strong> the customer by name, then greet their pet</li>
+                <li><strong>More thorough assessment</strong> - take your time to observe the dog</li>
+                <li><strong>Start with the waiver</strong></li>
+                <li><strong>Explain services</strong> and emphasize towel dry, give them the Future Member brochure</li>
+                <li><strong>Confirm shampoo type</strong></li>
                 <li><strong>Confirm time and contact info</strong></li>
                 <li><strong>Ask if they have any questions</strong></li>
-                <li><strong>Transfer and take</strong> dog back</li>
-                <li><strong>Weight</strong></li>
-                <li><strong>Into kennel</strong></li>
+                <li><strong>Transfer and take</strong> the dog to the back</li>
+                <li><strong>Weigh</strong> the dog</li>
+                <li><strong>Place</strong> in kennel</li>
             </ol>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps for Trial Drop Offs:</h4>
+        <div class="what-to-learn">
+            <h4>What You'll Learn:</h4>
             <ul>
-                <li>Take some time to explain how they differ, and really emphasize how important these are</li>
-                <li><span class="emphasis">This is how we grow, this is how we get new members!</span></li>
-                <li>This is also where we are setting expectations for future visits</li>
-                <li>We need to know and be comfortable enforcing lobby rules</li>
-                <li>We also need to be familiar and confident with our assessments to help set a positive tone for both the pet and parent</li>
-                <li>Manager and MA roleplay and allow for questions and interjections - take your time and explain each step</li>
-                <li>Roleplay trial drop off with trainee</li>
-                <li>Shadow trial drop off if you can</li>
+                <li>How trial drop offs differ from regular member drop offs</li>
+                <li>Why trials are so important to our business</li>
+                <li>How to confidently enforce lobby rules</li>
+                <li>How to conduct thorough assessments that set a positive tone</li>
+                <li>Roleplay with your trainer</li>
+                <li>Shadow a real trial drop off if possible</li>
             </ul>
         </div>
 
-        <h3>Part 7: Trial Pick Up</h3>
+        <h3>Trial Pick Ups - WHERE THE MAGIC HAPPENS</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>Tools You'll Use:</h4>
             <ul>
                 <li>Trial Pick Up Guide</li>
                 <li>Houndswell Product Sheets</li>
             </ul>
         </div>
 
+        <div class="important">
+            THIS IS THE BIGGEST DEAL! Trial pick ups are how we convert new customers into members. Every step matters!
+        </div>
+
         <div class="process-box">
             <h4>Trial Pick Up Process:</h4>
             <ol>
-                <li><strong>Greet</strong></li>
-                <li><strong>Pitch</strong></li>
-                <li><strong>SCENT Check</strong> - explanation and breakdown (start with 5's and work down)</li>
+                <li><strong>Greet</strong> warmly</li>
+                <li><strong>Deliver your pitch</strong></li>
+                <li><strong>Go over SCENT Check</strong> - start with 5's and work down, explain what each score means</li>
                 <li><strong>Transition</strong> - "We don't want to see trends like these continue, that's why we have our monthly memberships"</li>
-                <li><strong>Recommendation of membership</strong> - try the Goldilocks method, HIGHLIGHT KEY 4 IN PLUS</li>
+                <li><strong>Recommend membership</strong> - use the Goldilocks method, HIGHLIGHT KEY 4 IN PLUS</li>
                 <li><strong>Closing pitch</strong> - "We loved Sparky so much, we're gonna waive that registration fee for you today"</li>
-                <li><strong>Let. It. Simmer.</strong> (Be quiet, no need to say more, they will let you know if they have questions)</li>
-                <li><strong>Once they have signed up (or declined)</strong>, check out and rebook</li>
-                <li><strong>Bring dog out</strong></li>
+                <li><strong>Let. It. Simmer.</strong> - Be quiet. Don't fill the silence. They will let you know if they have questions</li>
+                <li><strong>Once they decide</strong> (signed up or declined), check out and rebook</li>
+                <li><strong>Bring</strong> their dog out</li>
             </ol>
         </div>
 
-        <div class="important">
-            THIS IS THE BIGGEST DEAL! This is how we grow, this is how we get new members. We want to make sure we are hitting every step of the pick up process.
-        </div>
-
-        <div class="training-steps">
-            <h4>Training Steps for Trial Pick Up:</h4>
+        <div class="what-to-learn">
+            <h4>Your Goal by End of Week:</h4>
             <ul>
-                <li>Take some time to explain how they differ (yes again, this is THE BIGGEST DEAL!!!) and really emphasize how important these are</li>
-                <li>This is how we grow, this is how we get new members</li>
-                <li>We want to make sure we are hitting every step of the pick up process</li>
-                <li>Take a bit to explain the pitch and give examples, then have them try</li>
-                <li>Go over why each step is important and set a goal that by end of day Friday everyone will have their pitch (Use Trial Pick Up Guide)</li>
-                <li>Have manager and MA roleplay and allow for questions and interjections - take your time and explain each step</li>
-                <li>Roleplay Trial pick up with trainee</li>
-                <li>Shadow trial pick up if you can</li>
+                <li>Have your own pitch perfected and natural</li>
+                <li>Understand why each step is important</li>
+                <li>Practice the pitch with your trainer multiple times</li>
+                <li>Roleplay trial pick ups</li>
+                <li>Shadow a real trial pick up if possible</li>
             </ul>
         </div>
 
         <div class="recap-box">
-            <h3>END OF DAY RECAP</h3>
-            <p>Review daily learning and temp check</p>
+            <h3>END OF DAY 3 - REFLECTION</h3>
+            <p>Today was a BIG day! You learned about trials - the lifeblood of our business. Review what you learned and practice your pitch before tomorrow.</p>
         </div>
 
         <!-- DAY 4 -->
         <div class="day-header">
             <h2>DAY 4</h2>
-            <div class="day-subtitle">Training Wheels</div>
+            <div class="day-subtitle">Training Wheels - Building Confidence</div>
         </div>
 
         <div class="objectives-box">
-            <h4>Training Objectives Today:</h4>
+            <h4>What You'll Learn Today:</h4>
             <ul>
-                <li>Independence with basics of drop off/pick up</li>
-                <li>Independence with basics of FOSA/Phones</li>
-                <li>Independence with booking</li>
-                <li>Overcoming objections</li>
-                <li>Conflict resolution</li>
+                <li>Work more independently with drop off/pick up</li>
+                <li>Handle FOSA and phones with confidence</li>
+                <li>Master booking appointments</li>
+                <li>Learn to overcome objections</li>
+                <li>Handle challenging situations and conflict resolution</li>
             </ul>
         </div>
 
-        <h3>Step 8: Challenging Situations</h3>
+        <h3>Handling Challenging Situations</h3>
 
         <div class="tools-box">
-            <h4>Tools to Review with Trainee:</h4>
+            <h4>New Tools You'll Learn:</h4>
             <ul>
-                <li>Workdrive</li>
+                <li>Workdrive resources</li>
                 <li>Membership Cancellation SOP</li>
             </ul>
         </div>
 
-        <div class="training-steps">
-            <h4>Training Steps for Challenging Situations:</h4>
+        <div class="what-to-learn">
+            <h4>What You'll Learn:</h4>
             <ul>
-                <li><strong>Cancellations should be handled by managers exclusively</strong> - go over process and explain what they should do if someone requests a cancellation while a manager is not present</li>
-                <li>Should let them know manager will follow up with them ASAP</li>
-                <li>Discuss the concept of <strong>pain flushing</strong> and the benefit of silence</li>
-                <li>Get to the root of the "why" of the objection, address it, and put it on them</li>
-                <li>Roleplay to practice pain flushing and discuss opportunities and feedback after each one</li>
-                <li>Roleplay objections and discuss opportunities and feedback after each one</li>
+                <li><strong>Cancellations are handled by managers only</strong> - learn what to do if someone requests a cancellation when a manager isn't available (let them know a manager will follow up ASAP)</li>
+                <li>Learn the concept of <strong>"pain flushing"</strong> and the power of silence</li>
+                <li>How to get to the root of WHY someone is objecting</li>
+                <li>How to address objections and handle them professionally</li>
+                <li>Practice through multiple roleplay scenarios with feedback</li>
             </ul>
         </div>
 
-        <h3>Step 9: Trainee Shadow Shift</h3>
+        <h3>Shadow Shift - You're in the Driver's Seat</h3>
 
-        <div class="training-steps">
-            <h4>Training Steps for Trainee Shadow Day:</h4>
+        <div class="what-to-learn">
+            <h4>What to Expect:</h4>
             <ul>
-                <li>Go over the certification for independent MA and explain what each item means</li>
-                <li>Allow room for questions so they can understand what their expectations are</li>
-                <li>For the rest of the shift, the manager should shadow the MA as they work relatively independently and work on fine-tuning</li>
-                <li>Find learning opportunities on the fly and work on going through certification</li>
-                <li>Coach on things that need improvement</li>
-                <li>Praise the things they have down</li>
+                <li>Your trainer will explain the <strong>Independent MA Certification</strong> and what each requirement means</li>
+                <li>You'll work relatively independently while your trainer shadows and fine-tunes your skills</li>
+                <li>Your trainer will find teaching moments throughout the shift</li>
+                <li>You'll start working through your certification checklist</li>
+                <li>Your trainer will coach on areas needing improvement</li>
+                <li>Your trainer will praise what you're doing well</li>
             </ul>
         </div>
 
         <div class="recap-box">
-            <h3>END OF DAY RECAP</h3>
+            <h3>END OF DAY 4 - CERTIFICATION CHECK-IN</h3>
             <ul style="color: white;">
-                <li>Review daily learning and temp check</li>
-                <li>Check in with them at the end of the day with their certification</li>
-                <li>Go over the expectations for independent again</li>
-                <li>Let them know what they passed on, reiterate what you need to see to get them signed off tomorrow</li>
+                <li>Review what you learned today</li>
+                <li>Review your certification progress with your trainer</li>
+                <li>Go over expectations for tomorrow's final evaluation</li>
+                <li>Know what you've already passed and what you need to demonstrate tomorrow</li>
             </ul>
         </div>
 
         <!-- DAY 5 -->
         <div class="day-header">
             <h2>DAY 5</h2>
-            <div class="day-subtitle">Training Wheels Off</div>
+            <div class="day-subtitle">Training Wheels Off - Certification Day!</div>
         </div>
 
         <div class="objectives-box">
-            <h4>Training Objectives Today:</h4>
+            <h4>Today's Goals:</h4>
             <ul>
-                <li>MA Independence Evaluation</li>
-                <li>MA Certification</li>
+                <li>Demonstrate your independence as an MA</li>
+                <li>Complete your MA Certification</li>
+                <li>Celebrate your success!</li>
             </ul>
         </div>
 
-        <h3>Step 10: Certification</h3>
+        <h3>Certification Day</h3>
 
-        <div class="training-steps">
-            <h4>Certification Process:</h4>
+        <div class="what-to-learn">
+            <h4>What Today Looks Like:</h4>
             <ul>
-                <li>Review the certification again</li>
-                <li>Manager shadow MA all day, as hands off as possible</li>
-                <li>Give support if needed but encourage them to utilize their tools to answer their questions</li>
-                <li>Roleplay hard in downtime:</li>
+                <li>Review the certification requirements one more time</li>
+                <li>Your trainer will shadow you all day, being as hands-off as possible</li>
+                <li>Your trainer will provide support only when needed</li>
+                <li>You're encouraged to use your tools to find answers to questions</li>
+                <li>During downtime, you'll do intensive roleplay practice:</li>
                 <ul>
-                    <li>Ring ring</li>
-                    <li>Save me</li>
-                    <li>Sell me</li>
-                    <li>Teach me</li>
+                    <li><strong>Ring ring</strong> - phone scenarios</li>
+                    <li><strong>Save me</strong> - handling difficult situations</li>
+                    <li><strong>Sell me</strong> - membership pitches</li>
+                    <li><strong>Teach me</strong> - explaining services</li>
                 </ul>
             </ul>
         </div>
 
+        <div class="important">
+            This is YOUR day to shine! Show everything you've learned over the past four days. Trust yourself - you've got this!
+        </div>
+
         <div class="recap-box">
-            <h3>END OF DAY RECAP</h3>
+            <h3>END OF DAY 5 - FINAL EVALUATION</h3>
             <ul style="color: white;">
-                <li>Review daily learning and temp check</li>
-                <li>Sign off on certification OR make a plan for next week to work on what needs to be worked on</li>
+                <li>Review everything you learned this week</li>
+                <li>Final temperature check with your trainer</li>
+                <li>Sign off on your certification OR create a plan for additional practice next week</li>
             </ul>
         </div>
 
         <div style="background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%); color: white; padding: 30px; border-radius: 8px; margin: 40px 0; text-align: center;">
             <h2 style="color: white; margin-top: 0; border: none;">🎉 CONGRATULATIONS! 🎉</h2>
             <p style="font-size: 1.2em; margin: 20px 0;">You've completed the Member Associate training program!</p>
-            <p style="font-size: 1em;">You're now ready to provide exceptional service to our pet parents and their furry family members.</p>
+            <p style="font-size: 1em;">You're now ready to provide exceptional service to our pet parents and their furry family members. Welcome to the team!</p>
         </div>
 
-        <div style="text-align: center; padding: 40px 20px; color: #0077B6; margin-top: 60px;">
-            <span style="color: #FF6B35; font-size: 1.5em;">🐾</span>
-            <strong>SCENTHOUND</strong> - Making dog care routine, affordable, and accessible
-            <span style="color: #FF6B35; font-size: 1.5em;">🐾</span>
+        <h2>YOUR CERTIFICATION CHECKLIST</h2>
+        <p>Use this checklist to track your progress throughout the week. By the end of Day 5, you should be able to confidently demonstrate all of these skills:</p>
+
+        <div class="objectives-box">
+            <h4>Drop Off & Pick Up Skills:</h4>
+            <ul class="checklist">
+                <li>Greet customers by name and provide warm welcome</li>
+                <li>Conduct quick assessments confidently</li>
+                <li>Confirm services and contact information</li>
+                <li>Handle dog transfers safely</li>
+                <li>Navigate MyTime to check schedules</li>
+                <li>Explain SCENT check results clearly</li>
+                <li>Make relevant product and service recommendations</li>
+                <li>Rebook appointments efficiently</li>
+                <li>Maintain lobby etiquette and enforce house rules</li>
+            </ul>
         </div>
-    </div>
+
+        <div class="objectives-box">
+            <h4>FOSA & Phone Skills:</h4>
+            <ul class="checklist">
+                <li>Navigate FOSA system independently</li>
+                <li>Make professional calls to New Leads</li>
+                <li>Make professional calls to Active Trial Leads</li>
+                <li>Leave engaging, natural voicemails</li>
+                <li>Book appointments confidently and accurately</li>
+        </div>
+
+    </div> <!-- closes .container -->
 </body>
 </html>
