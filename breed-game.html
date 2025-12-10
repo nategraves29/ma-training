@@ -12,7 +12,6 @@
             background: linear-gradient(135deg, #f8f8f8 0%, #e8f5f5 100%);
             margin: 0;
             padding: 0;
-            max-width: 100%;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -21,12 +20,13 @@
         
         .container {
             background: white;
-            padding: 0;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
+            padding: 40px;
             width: 100%;
+            min-height: 100vh;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .header {
@@ -373,6 +373,7 @@
         let totalAttempts = 0;
         let streak = 0;
         let isSpinning = false;
+        let recentBreeds = [];
 
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spinBtn');
@@ -390,8 +391,25 @@
             resultContainer.classList.remove('show');
             feedback.textContent = '';
             
-            // Random breed
-            currentBreed = breeds[Math.floor(Math.random() * breeds.length)];
+            // Get available breeds (not recently used)
+            let availableBreeds = breeds.filter(breed => !recentBreeds.includes(breed.name));
+            
+            // If we've used too many breeds, reset the recent list but keep the last 5
+            if (availableBreeds.length < 10) {
+                recentBreeds = recentBreeds.slice(-5);
+                availableBreeds = breeds.filter(breed => !recentBreeds.includes(breed.name));
+            }
+            
+            // Random breed from available breeds
+            currentBreed = availableBreeds[Math.floor(Math.random() * availableBreeds.length)];
+            
+            // Add to recent breeds list
+            recentBreeds.push(currentBreed.name);
+            
+            // Keep only last 15 breeds in recent list
+            if (recentBreeds.length > 15) {
+                recentBreeds.shift();
+            }
             
             // Random spins (5-10 full rotations plus random offset)
             const spins = 5 + Math.random() * 5;
@@ -447,7 +465,21 @@
         function nextRound() {
             resultContainer.classList.remove('show');
             feedback.textContent = '';
+            
+            // Reset wheel rotation to 0 without animation
+            wheel.style.transition = 'none';
             wheel.style.transform = 'rotate(0deg)';
+            
+            // Force browser to apply the reset
+            wheel.offsetHeight;
+            
+            // Re-enable transition and spin
+            wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+            
+            // Automatically spin for next round
+            setTimeout(() => {
+                spinWheel();
+            }, 50);
         }
     </script>
 </body>
