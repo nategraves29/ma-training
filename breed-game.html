@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breed Level Game - Scenthound</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8f5f5 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00A0DC 0%, #0077B6 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .wheel-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 30px auto;
+        }
+        
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 8px solid #00A0DC;
+            position: relative;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            background: conic-gradient(
+                from 0deg,
+                #FF6B35 0deg 120deg,
+                #00A0DC 120deg 240deg,
+                #FFA500 240deg 360deg
+            );
+            box-shadow: 0 0 30px rgba(0, 160, 220, 0.3);
+        }
+        
+        .wheel-section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: 100% 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 0.9em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #FF6B35;
+            z-index: 10;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+        
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            border: 5px solid #00A0DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #00A0DC;
+            font-size: 1.2em;
+            z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        .spin-btn {
+            background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }
+        
+        .spin-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            border-left: 5px solid #00A0DC;
+            display: none;
+        }
+        
+        .result-container.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .breed-name {
+            font-size: 2em;
+            color: #00A0DC;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .level-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .level-btn {
+            background: white;
+            border: 3px solid #00A0DC;
+            color: #00A0DC;
+            padding: 15px 40px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .level-btn:hover {
+            background: #00A0DC;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .level-btn.correct {
+            background: #4CAF50;
+            border-color: #4CAF50;
+            color: white;
+        }
+        
+        .level-btn.incorrect {
+            background: #f44336;
+            border-color: #f44336;
+            color: white;
+        }
+        
+        .feedback {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .feedback.correct {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .feedback.incorrect {
+            background: #f44336;
+            color: white;
+        }
+        
+        .score-container {
+            background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .reset-btn {
+            background: white;
+            border: 2px solid #00A0DC;
+            color: #00A0DC;
+            padding: 10px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .reset-btn:hover {
+            background: #00A0DC;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐾 Breed Level Challenge 🐾</h1>
+            <div class="subtitle">Spin the wheel and guess the correct breed level!</div>
+        </div>
+        
+        <div class="score-container">
+            <span>Score: <span id="score">0</span> / <span id="total">0</span></span>
+            <span style="margin-left: 20px;">Streak: <span id="streak">0</span> 🔥</span>
+        </div>
+        
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" id="wheel"></div>
+            <div class="center-circle">SPIN</div>
+        </div>
+        
+        <button class="spin-btn" id="spinBtn">SPIN THE WHEEL</button>
+        
+        <div class="result-container" id="resultContainer">
+            <div class="breed-name" id="breedName"></div>
+            <div class="question">What level is this breed?</div>
+            <div class="level-buttons">
+                <button class="level-btn" onclick="checkAnswer(1)">Level 1</button>
+                <button class="level-btn" onclick="checkAnswer(2)">Level 2</button>
+                <button class="level-btn" onclick="checkAnswer(3)">Level 3</button>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <button class="reset-btn" onclick="nextRound()">Next Round</button>
+        </div>
+    </div>
+
+    <script>
+        const breeds = [
+            // Level 1
+            { name: "American Bulldog", level: 1 },
+            { name: "American Pit Bull Terrier", level: 1 },
+            { name: "Australian Cattle Dog", level: 1 },
+            { name: "Basset Hound", level: 1 },
+            { name: "Beagle", level: 1 },
+            { name: "Bichon Frise", level: 1 },
+            { name: "Black Mouth Cur", level: 1 },
+            { name: "Boston Terrier", level: 1 },
+            { name: "Boxer", level: 1 },
+            { name: "Bull Terrier", level: 1 },
+            { name: "Cavalier King Charles Spaniel", level: 1 },
+            { name: "Chihuahua (Long-haired)", level: 1 },
+            { name: "Chihuahua (Short-haired)", level: 1 },
+            { name: "Cocker Spaniel", level: 1 },
+            { name: "Dachshund (Long-haired)", level: 1 },
+            { name: "Dachshund (Short-haired)", level: 1 },
+            { name: "Doberman Pinscher", level: 1 },
+            { name: "English Bulldog", level: 1 },
+            { name: "French Bulldog", level: 1 },
+            { name: "German Short Haired Pointer", level: 1 },
+            { name: "Havanese", level: 1 },
+            { name: "Jack Russell Terrier", level: 1 },
+            { name: "Maltese", level: 1 },
+            { name: "Miniature Pincher", level: 1 },
+            { name: "Pomeranian", level: 1 },
+            { name: "Poodle (Toy)", level: 1 },
+            { name: "Pug", level: 1 },
+            { name: "Schnauzer (Mini)", level: 1 },
+            { name: "Shiba Inu", level: 1 },
+            { name: "Shih Tzu", level: 1 },
+            { name: "Welsh Corgi", level: 1 },
+            { name: "Yorkshire Terrier", level: 1 },
+            
+            // Level 2
+            { name: "Australian Shepherd", level: 2 },
+            { name: "Belgian Tervuren/Malinois", level: 2 },
+            { name: "Border Collie", level: 2 },
+            { name: "Cane Corso", level: 2 },
+            { name: "Doodle (Mini)", level: 2 },
+            { name: "German Shepherd", level: 2 },
+            { name: "Golden Retriever", level: 2 },
+            { name: "Great Dane", level: 2 },
+            { name: "Irish/English Setter", level: 2 },
+            { name: "Labrador Retriever", level: 2 },
+            { name: "Mastiff", level: 2 },
+            { name: "Poodle (Mini/Moyen)", level: 2 },
+            { name: "Portuguese Water Dog", level: 2 },
+            { name: "Rottweiler", level: 2 },
+            { name: "Schnauzer (Standard)", level: 2 },
+            { name: "Siberian Husky", level: 2 },
+            
+            // Level 3
+            { name: "All Doodle Mixes (Standard)", level: 3 },
+            { name: "Great Pyrenees", level: 3 },
+            { name: "Irish Wolf Hound", level: 3 },
+            { name: "Malamute", level: 3 },
+            { name: "Old English Sheepdog", level: 3 },
+            { name: "Poodle (Standard)", level: 3 },
+            { name: "Schnauzer (Giant)", level: 3 },
+            { name: "St. Bernard", level: 3 },
+            { name: "Wooly Husky", level: 3 }
+        ];
+
+        let currentBreed = null;
+        let score = 0;
+        let totalAttempts = 0;
+        let streak = 0;
+        let isSpinning = false;
+
+        const wheel = document.getElementById('wheel');
+        const spinBtn = document.getElementById('spinBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const breedName = document.getElementById('breedName');
+        const feedback = document.getElementById('feedback');
+
+        spinBtn.addEventListener('click', spinWheel);
+
+        function spinWheel() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinBtn.disabled = true;
+            resultContainer.classList.remove('show');
+            feedback.textContent = '';
+            
+            // Random breed
+            currentBreed = breeds[Math.floor(Math.random() * breeds.length)];
+            
+            // Random spins (5-10 full rotations plus random offset)
+            const spins = 5 + Math.random() * 5;
+            const degrees = (spins * 360) + (Math.random() * 360);
+            
+            wheel.style.transform = `rotate(${degrees}deg)`;
+            
+            setTimeout(() => {
+                breedName.textContent = currentBreed.name;
+                resultContainer.classList.add('show');
+                isSpinning = false;
+                spinBtn.disabled = false;
+                
+                // Reset level buttons
+                document.querySelectorAll('.level-btn').forEach(btn => {
+                    btn.classList.remove('correct', 'incorrect');
+                    btn.disabled = false;
+                });
+            }, 4000);
+        }
+
+        function checkAnswer(selectedLevel) {
+            totalAttempts++;
+            
+            const buttons = document.querySelectorAll('.level-btn');
+            buttons.forEach(btn => btn.disabled = true);
+            
+            if (selectedLevel === currentBreed.level) {
+                score++;
+                streak++;
+                feedback.textContent = `🎉 Correct! ${currentBreed.name} is Level ${currentBreed.level}!`;
+                feedback.className = 'feedback correct';
+                
+                buttons[selectedLevel - 1].classList.add('correct');
+            } else {
+                streak = 0;
+                feedback.textContent = `❌ Incorrect! ${currentBreed.name} is Level ${currentBreed.level}, not Level ${selectedLevel}.`;
+                feedback.className = 'feedback incorrect';
+                
+                buttons[selectedLevel - 1].classList.add('incorrect');
+                buttons[currentBreed.level - 1].classList.add('correct');
+            }
+            
+            updateScore();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = totalAttempts;
+            document.getElementById('streak').textContent = streak;
+        }
+
+        function nextRound() {
+            resultContainer.classList.remove('show');
+            feedback.textContent = '';
+            wheel.style.transform = 'rotate(0deg)';
+        }
+    </script>
+</body>
+</html>
