@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Associate Training Guide - Scenthound</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
@@ -16,45 +17,51 @@
             padding: 0;
             background: #f8f8f8;
         }
-        
+
         @media print {
             body {
                 background: white;
             }
-            
+
             .day-header {
                 page-break-before: always;
                 break-before: page;
             }
-            
+
             .day-header:first-of-type {
                 page-break-before: avoid;
                 break-before: avoid;
             }
-            
-            h2, h3, h4 {
+
+            h2,
+            h3,
+            h4 {
                 page-break-after: avoid;
                 break-after: avoid;
             }
-            
-            .objectives-box, .tools-box, .process-box, .what-to-learn, .scenario-box {
+
+            .objectives-box,
+            .tools-box,
+            .process-box,
+            .what-to-learn,
+            .scenario-box {
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
-            
+
             .recap-box {
                 page-break-after: always;
                 break-after: page;
             }
         }
-        
+
         .container {
             background: white;
             padding: 50px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header {
             background: linear-gradient(135deg, #00A0DC 0%, #0077B6 100%);
             color: white;
@@ -63,21 +70,21 @@
             margin-bottom: 40px;
             text-align: center;
         }
-        
+
         h1 {
             margin: 0;
             font-size: 2.2em;
             font-weight: 700;
             letter-spacing: 1px;
         }
-        
+
         .module-subtitle {
             font-size: 0.9em;
             opacity: 0.9;
             font-weight: 400;
             margin-top: 5px;
         }
-        
+
         .day-header {
             background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
             color: white;
@@ -86,7 +93,7 @@
             margin: 40px 0 30px 0;
             text-align: center;
         }
-        
+
         .day-header h2 {
             margin: 0;
             color: white;
@@ -94,13 +101,13 @@
             padding: 0;
             font-size: 1.8em;
         }
-        
+
         .day-subtitle {
             font-size: 0.9em;
             opacity: 0.95;
             margin-top: 5px;
         }
-        
+
         h2 {
             color: #00A0DC;
             font-size: 1.8em;
@@ -110,7 +117,7 @@
             border-bottom: 3px solid #00A0DC;
             padding-bottom: 10px;
         }
-        
+
         h3 {
             color: #0077B6;
             font-size: 1.3em;
@@ -118,7 +125,7 @@
             margin-bottom: 12px;
             font-weight: 600;
         }
-        
+
         h4 {
             color: #00A0DC;
             font-size: 1.1em;
@@ -126,7 +133,7 @@
             margin-bottom: 10px;
             font-weight: 600;
         }
-        
+
         .objectives-box {
             background: #f0f9ff;
             border-left: 5px solid #00A0DC;
@@ -134,12 +141,12 @@
             margin: 20px 0;
             border-radius: 6px;
         }
-        
+
         .objectives-box h4 {
             margin-top: 0;
             color: #00A0DC;
         }
-        
+
         .tools-box {
             background: #e6f7ff;
             border-left: 5px solid #FF6B35;
@@ -147,12 +154,12 @@
             margin: 20px 0;
             border-radius: 6px;
         }
-        
+
         .tools-box h4 {
             margin-top: 0;
             color: #FF6B35;
         }
-        
+
         .process-box {
             background: #fff8f0;
             border: 2px solid #FF6B35;
@@ -160,7 +167,7 @@
             margin: 20px 0;
             border-radius: 8px;
         }
-        
+
         .what-to-learn {
             background: #f8f8f8;
             padding: 20px;
@@ -168,12 +175,12 @@
             border-radius: 6px;
             border-left: 4px solid #0077B6;
         }
-        
+
         .what-to-learn h4 {
             color: #0077B6;
             margin-top: 0;
         }
-        
+
         .highlight {
             background: #fff8f0;
             padding: 15px;
@@ -181,12 +188,12 @@
             border-radius: 6px;
             margin: 20px 0;
         }
-        
+
         .emphasis {
             color: #FF6B35;
             font-weight: 700;
         }
-        
+
         .important {
             background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
             color: white;
@@ -195,7 +202,7 @@
             margin: 20px 0;
             font-weight: 600;
         }
-        
+
         .recap-box {
             background: linear-gradient(135deg, #00A0DC 0%, #0077B6 100%);
             color: white;
@@ -203,26 +210,26 @@
             border-radius: 8px;
             margin: 30px 0;
         }
-        
+
         .recap-box h3 {
             color: white;
             margin-top: 0;
         }
-        
+
         ul {
             margin: 10px 0;
             padding-left: 25px;
         }
-        
+
         li {
             margin: 8px 0;
             line-height: 1.6;
         }
-        
+
         strong {
             color: #0077B6;
         }
-        
+
         .badge {
             display: inline-block;
             background: #FF6B35;
@@ -233,14 +240,14 @@
             font-weight: 600;
             margin-left: 10px;
         }
-        
+
         .intro-text {
             font-size: 1.05em;
             line-height: 1.8;
             color: #555;
             margin-bottom: 30px;
         }
-        
+
         .scenario-box {
             background: white;
             border: 2px solid #00A0DC;
@@ -248,7 +255,7 @@
             margin: 15px 0;
             border-radius: 6px;
         }
-        
+
         .scenario-box h4 {
             color: #00A0DC;
             margin-top: 0;
@@ -258,7 +265,7 @@
             list-style: none;
             padding: 0;
         }
-        
+
         .checklist li {
             padding: 12px 15px 12px 45px;
             margin: 10px 0;
@@ -266,7 +273,7 @@
             border-radius: 6px;
             position: relative;
         }
-        
+
         .checklist li::before {
             content: '☐';
             position: absolute;
@@ -277,98 +284,99 @@
         }
 
         /* Top Navigation Bar */
-.top-nav {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    background: #0077B6;
-    padding: 18px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: padding 0.25s ease, background 0.25s ease;
-}
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: #0077B6;
+            padding: 18px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: padding 0.25s ease, background 0.25s ease;
+        }
 
-.top-nav.shrink {
-    padding: 6px 0; /* smaller once scrolled */
-    background: #005f8f; /* slightly darker if you want */
-}        
+        .top-nav.shrink {
+            padding: 6px 0;
+            /* smaller once scrolled */
+            background: #005f8f;
+            /* slightly darker if you want */
+        }
 
-.top-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
+        .top-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
 
-.top-nav li a {
-    color: white;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: background 0.2s ease;
-}
+        .top-nav li a {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
 
-.top-nav li a:hover {
-    background: #00A0DC;
-}
+        .top-nav li a:hover {
+            background: #00A0DC;
+        }
 
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-}
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* Prevent nav bar from covering section titles */
+        /* Prevent nav bar from covering section titles */
         .day-header,
         #welcome,
         #certification {
             scroll-margin-top: 90px;
         }
 
-/* Back to Top Button */
-#backToTop {
-    position: fixed;
-    bottom: 35px;
-    right: 5px;
-    background: #00A0DC;
-    color: white;
-    border: none;
-    font-size: 20px;
-    padding: 10px 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.2s ease;
-}
+        /* Back to Top Button */
+        #backToTop {
+            position: fixed;
+            bottom: 35px;
+            right: 5px;
+            background: #00A0DC;
+            color: white;
+            border: none;
+            font-size: 20px;
+            padding: 10px 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
 
-#backToTop:hover {
-    transform: translateY(-3px);
-}
+        #backToTop:hover {
+            transform: translateY(-3px);
+        }
 
-#backToTop.show {
-    opacity: 1;
-    pointer-events: auto;
-}
-        
-
+        #backToTop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
+
 <body>
     <!-- Navigation Bar -->
-<nav class="top-nav">
-    <ul>
-        <li><a href="#welcome">Welcome</a></li>
-        <li><a href="#day1">Day 1</a></li>
-        <li><a href="#day2">Day 2</a></li>
-        <li><a href="#day3">Day 3</a></li>
-        <li><a href="#day4">Day 4</a></li>
-        <li><a href="#day5">Day 5</a></li>
-        <li><a href="#certification">Certification</a></li>
-    </ul>
-</nav>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="#welcome">Welcome</a></li>
+            <li><a href="#day1">Day 1</a></li>
+            <li><a href="#day2">Day 2</a></li>
+            <li><a href="#day3">Day 3</a></li>
+            <li><a href="#day4">Day 4</a></li>
+            <li><a href="#day5">Day 5</a></li>
+            <li><a href="#certification">Certification</a></li>
+        </ul>
+    </nav>
     <div class="container">
         <div class="header">
             <h1>MEMBER ASSOCIATE TRAINING GUIDE</h1>
@@ -376,7 +384,10 @@ html {
         </div>
 
         <h2 id="welcome">WELCOME TO SCENTHOUND!</h2>
-        <p class="intro-text">Congratulations on joining the Scenthound team! Over the next five days, you'll learn everything you need to become a confident and capable Member Associate. This guide outlines what you'll be learning each day. Use it to prepare, take notes, and reference throughout your training. By Day 5, you'll be certified and ready to work independently!</p>
+        <p class="intro-text">Congratulations on joining the Scenthound team! Over the next five days, you'll learn
+            everything you need to become a confident and capable Member Associate. This guide outlines what you'll be
+            learning each day. Use it to prepare, take notes, and reference throughout your training. By Day 5, you'll
+            be certified and ready to work independently!</p>
 
         <!-- DAY 1 -->
         <div class="day-header" id="day1">
@@ -425,7 +436,8 @@ html {
                 <li><strong>Confirm</strong> contact information</li>
                 <li><strong>Transfer and take</strong> the dog to the back</li>
                 <li><strong>Weigh</strong> the dog</li>
-                <li><strong>Place</strong> the dog in their kennel or <strong>hand off</strong> to Scent Tech to bring to bathtub</li>
+                <li><strong>Place</strong> the dog in their kennel or <strong>hand off</strong> to Scent Tech to bring
+                    to bathtub</li>
             </ol>
         </div>
 
@@ -460,7 +472,9 @@ html {
                 <li><strong>Go over</strong> their dog's SCENT check results</li>
                 <li><strong>Make</strong> relevant product and service recommendations</li>
                 <li><strong>Check out and rebook</strong> their next appointment</li>
-                <li><strong>Bring</strong> their dog out. <strong>Remember</strong> to do a final check of the dog to ensure all services were completed, there are no cotton balls in ears and coat spray has been applied.</li>
+                <li><strong>Bring</strong> their dog out. <strong>Remember</strong> to do a final check of the dog to
+                    ensure all services were completed, there are no cotton balls in ears and coat spray has been
+                    applied.</li>
             </ol>
         </div>
 
@@ -481,7 +495,8 @@ html {
 
         <div class="recap-box">
             <h3>END OF DAY 1 - REFLECTION</h3>
-            <p>Take a moment to think about what you learned today. What felt natural? What do you want to practice more? Jot down any questions for tomorrow.</p>
+            <p>Take a moment to think about what you learned today. What felt natural? What do you want to practice
+                more? Jot down any questions for tomorrow.</p>
         </div>
 
         <!-- DAY 2 -->
@@ -547,12 +562,14 @@ html {
         </div>
 
         <div class="highlight">
-            <strong>Remember:</strong> Engaging conversations are our bread and butter, but being able to leave solid voicemails without sounding like a robot is an important skill. Practice makes perfect!
+            <strong>Remember:</strong> Engaging conversations are our bread and butter, but being able to leave solid
+            voicemails without sounding like a robot is an important skill. Practice makes perfect!
         </div>
 
         <div class="recap-box">
             <h3>END OF DAY 2 - REFLECTION</h3>
-            <p>Review the day with your trainer. Celebrate your wins, reflect on challenges, and highlight what you learned. FOSA can feel overwhelming at first - that's completely normal!</p>
+            <p>Review the day with your trainer. Celebrate your wins, reflect on challenges, and highlight what you
+                learned. FOSA can feel overwhelming at first - that's completely normal!</p>
         </div>
 
         <!-- DAY 3 -->
@@ -589,12 +606,18 @@ html {
             <ul>
                 <li><strong>Scenario 1:</strong> "My dog is rabies exempt"</li>
                 <li><strong>Scenario 2:</strong> "I need a haircut TODAY"</li>
-                <li><strong>Scenario 3:</strong> "I have a severely matted doodle and I just want to come in for a bath. I can only come in at 5:30 pm, when is your next availability?"</li>
+                <li><strong>Scenario 3:</strong> "I have a severely matted doodle and I just want to come in for a bath.
+                    I can only come in at 5:30 pm, when is your next availability?"</li>
             </ul>
         </div>
 
         <div class="highlight">
-            <strong>Get comfortable with not knowing everything!</strong> The goal isn't to have all the answers memorized - it's to build confidence. You may not know the answer, but you know who to ask or where to look it up. Things are always changing, and <em>Seek Growth</em> is one of our core pillars. If we ever feel like we know everything, we're failing on that count. Being open and transparent is part of what makes Scenthound unique! <br> It is <b>totally fine</b> to ask someone on the phone to "please hold so that I can ask my associate to give you the most accurate answer to your question."
+            <strong>Get comfortable with not knowing everything!</strong> The goal isn't to have all the answers
+            memorized - it's to build confidence. You may not know the answer, but you know who to ask or where to look
+            it up. Things are always changing, and <em>Seek Growth</em> is one of our core pillars. If we ever feel like
+            we know everything, we're failing on that count. Being open and transparent is part of what makes Scenthound
+            unique! <br> It is <b>totally fine</b> to ask someone on the phone to "please hold so that I can ask my
+            associate to give you the most accurate answer to your question."
         </div>
 
         <h3>FOSA Practice</h3>
@@ -620,7 +643,8 @@ html {
         </div>
 
         <div class="important">
-            Trials are how we grow! This is how we get new members. These appointments set expectations for future visits and are critical to our success. Pay close attention!
+            Trials are how we grow! This is how we get new members. These appointments set expectations for future
+            visits and are critical to our success. Pay close attention!
         </div>
 
         <div class="process-box">
@@ -670,11 +694,16 @@ html {
             <ol>
                 <li><strong>Greet</strong> warmly</li>
                 <li><strong>Deliver your pitch</strong></li>
-                <li><strong>Go over SCENT Check</strong> - start with 5's and work down, explain what each score means</li>
-                <li><strong>Transition</strong> - "We want to see these scores go up, that's why we have our monthly memberships"</li>
-                <li><strong>Recommend membership</strong> - use the Goldilocks method, HIGHLIGHT KEY 4 BENEFITS IN ESCENTIALS PLUS</li>
-                <li><strong>Closing pitch</strong> - "We loved Sparky so much, we're gonna waive that registration fee for you today"</li>
-                <li><strong>Let. It. Simmer.</strong> - Be quiet. Don't fill the silence. They will let you know if they have questions</li>
+                <li><strong>Go over SCENT Check</strong> - start with 5's and work down, explain what each score means
+                </li>
+                <li><strong>Transition</strong> - "We want to see these scores go up, that's why we have our monthly
+                    memberships"</li>
+                <li><strong>Recommend membership</strong> - use the Goldilocks method, HIGHLIGHT KEY 4 BENEFITS IN
+                    ESCENTIALS PLUS</li>
+                <li><strong>Closing pitch</strong> - "We loved Sparky so much, we're gonna waive that registration fee
+                    for you today"</li>
+                <li><strong>Let. It. Simmer.</strong> - Be quiet. Don't fill the silence. They will let you know if they
+                    have questions</li>
                 <li><strong>Once they decide</strong> (signed up or declined), check out and rebook</li>
                 <li><strong>Bring</strong> their dog out</li>
             </ol>
@@ -693,7 +722,8 @@ html {
 
         <div class="recap-box">
             <h3>END OF DAY 3 - REFLECTION</h3>
-            <p>Today was a BIG day! You learned about trials - the lifeblood of our business. Review what you learned and practice your pitch before tomorrow.</p>
+            <p>Today was a BIG day! You learned about trials - the lifeblood of our business. Review what you learned
+                and practice your pitch before tomorrow.</p>
         </div>
 
         <!-- DAY 4 -->
@@ -726,7 +756,8 @@ html {
         <div class="what-to-learn">
             <h4>What You'll Learn:</h4>
             <ul>
-                <li><strong>Cancellations are handled by managers only</strong> - learn what to do if someone requests a cancellation when a manager isn't available (let them know a manager will follow up ASAP)</li>
+                <li><strong>Cancellations are handled by managers only</strong> - learn what to do if someone requests a
+                    cancellation when a manager isn't available (let them know a manager will follow up ASAP)</li>
                 <li>Learn the concept of <strong>"pain flushing"</strong> and the power of silence</li>
                 <li>How to get to the root of WHY someone is objecting</li>
                 <li>How to address objections and handle them professionally</li>
@@ -739,7 +770,8 @@ html {
         <div class="what-to-learn">
             <h4>What to Expect:</h4>
             <ul>
-                <li>Your trainer will explain the <strong>Independent MA Certification</strong> and what each requirement means</li>
+                <li>Your trainer will explain the <strong>Independent MA Certification</strong> and what each
+                    requirement means</li>
                 <li>You'll work relatively independently while your trainer shadows and fine-tunes your skills</li>
                 <li>Your trainer will find teaching moments throughout the shift</li>
                 <li>You'll start working through your certification checklist</li>
@@ -793,7 +825,8 @@ html {
         </div>
 
         <div class="important">
-            This is YOUR day to shine! Show everything you've learned over the past four days. Trust yourself - you've got this!
+            This is YOUR day to shine! Show everything you've learned over the past four days. Trust yourself - you've
+            got this!
         </div>
 
         <div class="recap-box">
@@ -805,14 +838,17 @@ html {
             </ul>
         </div>
 
-        <div style="background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%); color: white; padding: 30px; border-radius: 8px; margin: 40px 0; text-align: center;">
+        <div
+            style="background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%); color: white; padding: 30px; border-radius: 8px; margin: 40px 0; text-align: center;">
             <h2 style="color: white; margin-top: 0; border: none;">🎉 CONGRATULATIONS! 🎉</h2>
             <p style="font-size: 1.2em; margin: 20px 0;">You've completed the Member Associate training program!</p>
-            <p style="font-size: 1em;">You're now ready to provide exceptional service to our pet parents and their furry family members. Welcome to the team!</p>
+            <p style="font-size: 1em;">You're now ready to provide exceptional service to our pet parents and their
+                furry family members. Welcome to the team!</p>
         </div>
 
         <h2 id="certification">YOUR CERTIFICATION CHECKLIST</h2>
-        <p>Use this checklist to track your progress throughout the week. By the end of Day 5, you should be able to confidently demonstrate all of these skills:</p>
+        <p>Use this checklist to track your progress throughout the week. By the end of Day 5, you should be able to
+            confidently demonstrate all of these skills:</p>
 
         <div class="objectives-box">
             <h4>Drop Off & Pick Up Skills:</h4>
@@ -844,30 +880,31 @@ html {
     <button id="backToTop" title="Back to top">↑</button>
 
     <script>
-window.addEventListener("scroll", () => {
-    const nav = document.querySelector(".top-nav");
-    if (window.scrollY > 50) {
-        nav.classList.add("shrink");
-    } else {
-        nav.classList.remove("shrink");
-    }
-});
-</script>
+        window.addEventListener("scroll", () => {
+            const nav = document.querySelector(".top-nav");
+            if (window.scrollY > 50) {
+                nav.classList.add("shrink");
+            } else {
+                nav.classList.remove("shrink");
+            }
+        });
+    </script>
 
-<script>
-const backToTopBtn = document.getElementById("backToTop");
+    <script>
+        const backToTopBtn = document.getElementById("backToTop");
 
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 400) {
-        backToTopBtn.classList.add("show");
-    } else {
-        backToTopBtn.classList.remove("show");
-    }
-});
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        });
 
-backToTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>    
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
 </body>
+
 </html>
