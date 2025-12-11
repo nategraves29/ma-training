@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breed Quick-Fire - Scenthound</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.4);
+        }
+        
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            flex: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #00A0DC;
+        }
+        
+        .stat-value.streak {
+            color: #FFA500;
+        }
+        
+        .question-container {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 50px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .timer-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #4CAF50 0%, #FFA500 50%, #f44336 100%);
+            border-radius: 20px 20px 0 0;
+            transition: width 0.1s linear;
+        }
+        
+        .question-type {
+            font-size: 0.9em;
+            color: #00A0DC;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .breed-name {
+            font-size: 3em;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .question-text {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        
+        .answer-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .answer-btn {
+            background: linear-gradient(135deg, #00A0DC 0%, #0077B6 100%);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.15em;
+            font-weight: 700;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 5px 20px rgba(0, 160, 220, 0.4);
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+        
+        .answer-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 160, 220, 0.6);
+        }
+        
+        .answer-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .answer-btn.correct {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            animation: correctPulse 0.5s;
+        }
+        
+        .answer-btn.incorrect {
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+            animation: incorrectShake 0.5s;
+        }
+        
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes incorrectShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .start-screen {
+            text-align: center;
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #FF6B35 0%, #E85A2A 100%);
+            color: white;
+            border: none;
+            padding: 25px 80px;
+            font-size: 2em;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.5);
+            margin-top: 30px;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(255, 107, 53, 0.7);
+        }
+        
+        .game-over-screen {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .final-score {
+            font-size: 4em;
+            font-weight: 700;
+            color: #00A0DC;
+            margin: 20px 0;
+        }
+        
+        .performance {
+            font-size: 1.5em;
+            color: #666;
+            margin: 20px 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .streak-display {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(255, 165, 0, 0.4);
+        }
+        
+        .instructions {
+            background: rgba(0, 160, 220, 0.1);
+            border-left: 4px solid #00A0DC;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .instructions h3 {
+            color: #00A0DC;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ BREED QUICK-FIRE ⚡</h1>
+            <div class="subtitle">How fast can you answer?</div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="start-screen">
+            <div class="question-container">
+                <h2 style="color: #FF6B35; font-size: 2.5em; margin-bottom: 20px;">Ready to Test Your Knowledge?</h2>
+                <div class="instructions">
+                    <h3>How to Play:</h3>
+                    <ul>
+                        <li>You have <strong>10 seconds</strong> to answer each question</li>
+                        <li>Questions cover shedding treatments, kennel dryers, and health concerns</li>
+                        <li>Build your streak for bonus points!</li>
+                        <li>Game ends after 5 wrong answers or time runs out</li>
+                    </ul>
+                </div>
+                <button class="start-btn" onclick="startGame()">START GAME</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="hidden">
+            <div class="game-stats">
+                <div class="stat-box">
+                    <div class="stat-label">Score</div>
+                    <div class="stat-value" id="score">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Streak</div>
+                    <div class="stat-value streak" id="streak">0</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Lives</div>
+                    <div class="stat-value" id="lives">❤️❤️❤️❤️❤️</div>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <div class="timer-bar" id="timerBar"></div>
+                <div class="question-type" id="questionType"></div>
+                <div class="breed-name" id="breedName"></div>
+                <div class="question-text" id="questionText"></div>
+                <div class="answer-buttons" id="answerButtons"></div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="hidden game-over-screen">
+            <h2 style="color: #FF6B35; font-size: 3em; margin-bottom: 20px;">Game Over!</h2>
+            <div class="final-score" id="finalScore"></div>
+            <div class="performance" id="performance"></div>
+            <button class="start-btn" onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        const breeds = [
+            { name: "American Bulldog", level: 1, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Brachycephalic", "Dental Disease", "Dry Skin", "Ear Infection"] },
+            { name: "American Pit Bull Terrier", level: 1, shedding: "Yes, curry only", kennelDryer: true, concerns: ["Allergies", "Heart Disease", "Eye Disorders", "Hip Issues"] },
+            { name: "Australian Cattle Dog", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Hip Issues", "Bone Issues", "Joint Issues"] },
+            { name: "Australian Shepherd", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Dental Disease", "Hip Dysplasia", "Joint Issues"] },
+            { name: "Basset Hound", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Ear Infection", "Hip Issues", "Joint Issues", "Weight Gain"] },
+            { name: "Beagle", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Ear Infection", "Eye Disorders", "Weight Gain"] },
+            { name: "Belgian Tervuren", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Epilepsy", "Bone Issues", "Hip Dysplasia"] },
+            { name: "Belgian Malinois", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Diabetes", "Hair Loss", "Epilepsy", "Eye Problems"] },
+            { name: "Bichon Frise", level: 1, shedding: "No", kennelDryer: false, concerns: ["Brachycephalic", "Dental Disease", "Ear Infection", "Tear Stains"] },
+            { name: "Border Collie", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Ear Infection", "Hip Issues", "Skin Conditions"] },
+            { name: "Boston Terrier", level: 1, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Eye Complications", "Skin Conditions"] },
+            { name: "Boxer", level: 1, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Brachycephalic", "Dental Disease", "Ear Infection", "Skin Conditions"] },
+            { name: "Cane Corso", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Epilepsy", "Eye Lid Abnormalities", "Mange", "Hip Dysplasia"] },
+            { name: "Cavalier King Charles Spaniel", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Ear Infection", "Hip Issues"] },
+            { name: "Chihuahua", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Brachycephalic", "Dental Disease", "Heart Issues", "Yeast Build-Up"] },
+            { name: "Cocker Spaniel", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Dental Disease", "Ear Infection"] },
+            { name: "Dachshund", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Back Issues", "Dental Issues", "Ear Infection"] },
+            { name: "Doberman Pinscher", level: 1, shedding: "Yes, curry only", kennelDryer: true, concerns: ["Hip Issues", "Joint Issues", "Weight Gain", "Skin Issues"] },
+            { name: "English Bulldog", level: 1, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Allergies", "Arthritis", "Brachycephalic", "Dental Disease"] },
+            { name: "French Bulldog", level: 1, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Ear Infections", "Hip Issues"] },
+            { name: "German Shepherd", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Dental Problems", "Ear Infection", "Hip Issues"] },
+            { name: "German Shorthaired Pointer", level: 1, shedding: "Yes, curry only", kennelDryer: true, concerns: ["Allergies", "Ear Infection", "Eye Complications", "Hip Issues"] },
+            { name: "Golden Retriever", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Eye Defects", "Ear Infection", "Heart Issues"] },
+            { name: "Goldendoodle", level: 3, shedding: "If needed", kennelDryer: true, concerns: ["Itchy Skin", "Frequent Brushing Needed", "Ear Infection", "Hip Issues"] },
+            { name: "Great Dane", level: 2, shedding: "Yes, curry only", kennelDryer: false, concerns: ["Heart Issues", "Ear Infections", "Eye Diseases", "Hip Issues"] },
+            { name: "Great Pyrenees", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Hip Issues", "Joint Issues", "Extra Toes", "Skin Issues"] },
+            { name: "Havanese", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Ear Infection", "Eye Infection", "Hip Issues", "Tear Stains"] },
+            { name: "Irish Setter", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Eye Problems", "Immune Issues", "Hip Issues"] },
+            { name: "Irish Wolfhound", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Bone Cancer", "Heart Issues", "Hip Issues"] },
+            { name: "Jack Russell Terrier", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Hip Issues", "Joint Issues", "Dental Disease", "Eye Complications"] },
+            { name: "Labradoodle", level: 3, shedding: "If needed", kennelDryer: true, concerns: ["Allergies", "Ear Infection", "Hip Complications"] },
+            { name: "Labrador Retriever", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Arthritis", "Ear Infection", "Eye Disorders", "Obesity"] },
+            { name: "Malamute", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Diabetes", "Hair Loss", "Epilepsy", "Eye Problems"] },
+            { name: "Maltese", level: 1, shedding: "No", kennelDryer: true, concerns: ["Ear Infection", "Eye Infection", "Skin Issues", "Tooth Loss"] },
+            { name: "Mastiff", level: 2, shedding: "Yes", kennelDryer: false, concerns: ["Brachycephalic", "Allergies", "Skin Problems", "Hip Complications"] },
+            { name: "Miniature Pinscher", level: 1, shedding: "Yes, curry only", kennelDryer: true, concerns: ["Allergies", "Skin Complications", "Eye Problems", "Heart Defects"] },
+            { name: "Old English Sheepdog", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Deafness", "Immune Disorders", "Heart Problems", "Hip Complications"] },
+            { name: "Pomeranian", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Hair Loss", "Eye Infection"] },
+            { name: "Portuguese Water Dog", level: 2, shedding: "No", kennelDryer: true, concerns: ["Alopecia", "IBD", "Eye Problems", "Hip Complications"] },
+            { name: "Poodle", level: 1, shedding: "No", kennelDryer: true, concerns: ["Ear Infection", "Eye Problems", "Hip Dysplasia"] },
+            { name: "Pug", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Eye Issues", "Skin Issues"] },
+            { name: "Rottweiler", level: 2, shedding: "Yes", kennelDryer: false, concerns: ["Allergies", "Brachycephalic", "Ear Infection", "Hip Complications"] },
+            { name: "Schnauzer", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Heart Disease", "Eye Disorders", "Hip Complications"] },
+            { name: "Shiba Inu", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Allergies", "Hip Complications", "Dental Disease", "Anxiety"] },
+            { name: "Shih Tzu", level: 1, shedding: "Yes", kennelDryer: false, concerns: ["Brachycephalic", "Frequent Brushing Needed", "Ear Infection", "Tooth Decay"] },
+            { name: "Siberian Husky", level: 2, shedding: "Yes", kennelDryer: true, concerns: ["Hair Loss", "Hip Complications", "Skin Issues"] },
+            { name: "St. Bernard", level: 3, shedding: "Yes", kennelDryer: true, concerns: ["Heart Muscle Disease", "Bloat", "Joint Issues", "Dental Issues"] },
+            { name: "Welsh Corgi", level: 1, shedding: "Yes", kennelDryer: true, concerns: ["Back Problems", "Hip Conditions", "Obesity"] },
+            { name: "Yorkshire Terrier", level: 1, shedding: "No", kennelDryer: false, concerns: ["Brachycephalic", "Early Tooth Decay", "Eye Infection", "Spinal Damage"] }
+        ];
+
+        let score = 0;
+        let streak = 0;
+        let lives = 5;
+        let currentBreed = null;
+        let currentQuestion = null;
+        let timerInterval = null;
+        let timeLeft = 10;
+        let recentBreeds = [];
+        let recentQuestions = [];
+
+        const questionTypes = [
+            {
+                type: "shedding",
+                getText: (breed) => "Would this breed benefit from a shedding treatment?",
+                getAnswers: (breed) => {
+                    const needsShedding = breed.shedding !== "No";
+                    return [
+                        { text: "YES", correct: needsShedding },
+                        { text: "NO", correct: !needsShedding }
+                    ];
+                }
+            },
+            {
+                type: "kennelDryer",
+                getText: (breed) => "Can this breed use a kennel dryer?",
+                getAnswers: (breed) => [
+                    { text: "YES", correct: breed.kennelDryer },
+                    { text: "NO", correct: !breed.kennelDryer }
+                ]
+            },
+            {
+                type: "healthConcern",
+                getText: (breed) => "Which is a common health concern for this breed?",
+                getAnswers: (breed) => {
+                    const correctConcern = breed.concerns[Math.floor(Math.random() * breed.concerns.length)];
+                    const otherBreeds = breeds.filter(b => b.name !== breed.name);
+                    const wrongConcerns = [];
+                    
+                    // Group similar concerns to avoid confusion
+                    const similarityGroups = {
+                        'heart': ['Heart Issues', 'Heart Disease', 'Heart Muscle Disease', 'Heart Defects'],
+                        'hip': ['Hip Issues', 'Hip Dysplasia', 'Hip Complications', 'Hip Conditions', 'Hip and Joint Issues', 'Hip and Elbow Complications'],
+                        'eye': ['Eye Issues', 'Eye Problems', 'Eye Disorders', 'Eye Defects', 'Eye Complications', 'Eye Infection', 'Eye Diseases', 'Eye Lid Abnormalities'],
+                        'ear': ['Ear Infection', 'Ear Infections'],
+                        'dental': ['Dental Disease', 'Dental Problems', 'Dental Issues', 'Tooth Decay', 'Early Tooth Decay', 'Tooth Loss'],
+                        'skin': ['Skin Issues', 'Skin Conditions', 'Skin Complications', 'Skin Problems', 'Dry Skin', 'Itchy Skin'],
+                        'joint': ['Joint Issues', 'Joint Complications', 'Bone Issues'],
+                        'allergies': ['Allergies']
+                    };
+                    
+                    // Find which group the correct answer belongs to
+                    let correctGroup = null;
+                    for (let [group, terms] of Object.entries(similarityGroups)) {
+                        if (terms.includes(correctConcern)) {
+                            correctGroup = group;
+                            break;
+                        }
+                    }
+                    
+                    // Get wrong answers that aren't in the same group or in the breed's concerns
+                    while (wrongConcerns.length < 2) {
+                        const randomBreed = otherBreeds[Math.floor(Math.random() * otherBreeds.length)];
+                        const randomConcern = randomBreed.concerns[Math.floor(Math.random() * randomBreed.concerns.length)];
+                        
+                        // Check if this concern is too similar to correct answer
+                        let isSimilar = false;
+                        if (correctGroup) {
+                            isSimilar = similarityGroups[correctGroup].includes(randomConcern);
+                        }
+                        
+                        // Only add if it's not similar, not already in wrong answers, and not in breed's concerns
+                        if (!isSimilar && 
+                            !wrongConcerns.includes(randomConcern) && 
+                            !breed.concerns.includes(randomConcern)) {
+                            wrongConcerns.push(randomConcern);
+                        }
+                    }
+                    
+                    const answers = [
+                        { text: correctConcern, correct: true },
+                        { text: wrongConcerns[0], correct: false },
+                        { text: wrongConcerns[1], correct: false }
+                    ];
+                    
+                    return answers.sort(() => Math.random() - 0.5);
+                }
+            }
+        ];
+
+        function startGame() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('gameScreen').classList.remove('hidden');
+            score = 0;
+            streak = 0;
+            lives = 5;
+            recentBreeds = [];
+            recentQuestions = [];
+            updateStats();
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            // Get available breeds (not recently used)
+            let availableBreeds = breeds.filter(breed => !recentBreeds.includes(breed.name));
+            
+            // If we've used too many breeds, reset but keep last 5
+            if (availableBreeds.length < 10) {
+                recentBreeds = recentBreeds.slice(-5);
+                availableBreeds = breeds.filter(breed => !recentBreeds.includes(breed.name));
+            }
+            
+            // Select random breed from available
+            currentBreed = availableBreeds[Math.floor(Math.random() * availableBreeds.length)];
+            
+            // Add to recent breeds list
+            recentBreeds.push(currentBreed.name);
+            if (recentBreeds.length > 15) {
+                recentBreeds.shift();
+            }
+            
+            // Select question type avoiding recent combinations
+            let availableQuestionTypes = questionTypes;
+            const recentKey = `${currentBreed.name}-`;
+            const recentForBreed = recentQuestions.filter(q => q.startsWith(recentKey));
+            
+            if (recentForBreed.length < questionTypes.length) {
+                availableQuestionTypes = questionTypes.filter(qt => 
+                    !recentForBreed.includes(`${recentKey}${qt.type}`)
+                );
+            }
+            
+            currentQuestion = availableQuestionTypes[Math.floor(Math.random() * availableQuestionTypes.length)];
+            
+            // Track this combination
+            const questionKey = `${currentBreed.name}-${currentQuestion.type}`;
+            recentQuestions.push(questionKey);
+            if (recentQuestions.length > 20) {
+                recentQuestions.shift();
+            }
+            
+            document.getElementById('questionType').textContent = currentQuestion.type.toUpperCase().replace('_', ' ');
+            document.getElementById('breedName').textContent = currentBreed.name;
+            document.getElementById('questionText').textContent = currentQuestion.getText(currentBreed);
+            
+            const answers = currentQuestion.getAnswers(currentBreed);
+            const buttonsContainer = document.getElementById('answerButtons');
+            buttonsContainer.innerHTML = '';
+            
+            answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.className = 'answer-btn';
+                btn.textContent = answer.text;
+                btn.dataset.correct = answer.correct;
+                btn.addEventListener('click', function() {
+                    handleAnswerClick(answer.correct, btn);
+                });
+                buttonsContainer.appendChild(btn);
+            });
+            
+            startTimer();
+        }
+
+        function startTimer() {
+            timeLeft = 10;
+            const timerBar = document.getElementById('timerBar');
+            timerBar.style.width = '100%';
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft -= 0.1;
+                const percentage = (timeLeft / 10) * 100;
+                timerBar.style.width = percentage + '%';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    const buttons = document.querySelectorAll('.answer-btn');
+                    buttons.forEach(b => b.disabled = true);
+                    
+                    // Highlight correct answer when time runs out
+                    buttons.forEach(b => {
+                        if (b.dataset.correct === 'true') {
+                            b.classList.add('correct');
+                        }
+                    });
+                    
+                    // Determine penalty based on question type
+                    if (currentQuestion.type === 'healthConcern') {
+                        lives -= 0.5; // Half life for health questions
+                    } else {
+                        lives -= 1; // Full life for yes/no questions
+                    }
+                    
+                    streak = 0;
+                    updateStats();
+                    
+                    if (lives <= 0) {
+                        setTimeout(() => {
+                            gameOver();
+                        }, 1500);
+                    } else {
+                        setTimeout(() => {
+                            nextQuestion();
+                        }, 1500);
+                    }
+                }
+            }, 100);
+        }
+
+        function handleAnswerClick(isCorrect, btn) {
+            clearInterval(timerInterval);
+            
+            console.log('BUTTON CLICKED - Question type:', currentQuestion.type); // DEBUG
+            
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach(b => b.disabled = true);
+            
+            if (isCorrect) {
+                btn.classList.add('correct');
+                score += (10 + streak);
+                streak++;
+                updateStats();
+                
+                setTimeout(() => {
+                    nextQuestion();
+                }, 1000);
+            } else {
+                btn.classList.add('incorrect');
+                
+                // Highlight the correct answer
+                buttons.forEach(b => {
+                    if (b.dataset.correct === 'true') {
+                        b.classList.add('correct');
+                    }
+                });
+                
+                console.log('BUTTON - Before penalty - Lives:', lives); // DEBUG
+                
+                // Determine penalty based on question type
+                if (currentQuestion.type === 'healthConcern') {
+                    console.log('BUTTON - Health concern - deducting 0.5'); // DEBUG
+                    lives = lives - 0.5; // Half life for health questions
+                } else {
+                    console.log('BUTTON - Yes/No question - deducting 1'); // DEBUG
+                    lives = lives - 1; // Full life for yes/no questions
+                }
+                
+                console.log('BUTTON - After penalty - Lives:', lives); // DEBUG
+                
+                streak = 0;
+                updateStats();
+                
+                if (lives <= 0) {
+                    setTimeout(() => {
+                        gameOver();
+                    }, 1500);
+                } else {
+                    setTimeout(() => {
+                        nextQuestion();
+                    }, 1500);
+                }
+            }
+        }
+
+        function checkAnswer(isCorrect, btn) {
+            clearInterval(timerInterval);
+            
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach(b => b.disabled = true);
+            
+            if (isCorrect) {
+                btn.classList.add('correct');
+                score += (10 + streak);
+                streak++;
+                updateStats();
+                
+                setTimeout(() => {
+                    nextQuestion();
+                }, 1000);
+            } else {
+                btn.classList.add('incorrect');
+                
+                // Highlight the correct answer
+                buttons.forEach(b => {
+                    if (b.dataset.correct === 'true') {
+                        b.classList.add('correct');
+                    }
+                });
+                
+                wrongAnswer();
+            }
+        }
+
+        function wrongAnswer() {
+            lives--;
+            streak = 0;
+            updateStats();
+            
+            if (lives <= 0) {
+                setTimeout(() => {
+                    gameOver();
+                }, 1500);
+            } else {
+                setTimeout(() => {
+                    nextQuestion();
+                }, 1500);
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('streak').textContent = streak + ' 🔥';
+            
+            // Display hearts with half-hearts for fractional lives
+            const fullHearts = Math.floor(lives);
+            const hasHalfHeart = (lives % 1) >= 0.4; // Check if there's a fractional part
+            const totalUsed = hasHalfHeart ? fullHearts + 1 : fullHearts;
+            const emptyHearts = 5 - totalUsed;
+            
+            let heartsDisplay = '';
+            for (let i = 0; i < fullHearts; i++) {
+                heartsDisplay += '❤️';
+            }
+            if (hasHalfHeart) {
+                heartsDisplay += '💔';
+            }
+            for (let i = 0; i < emptyHearts; i++) {
+                heartsDisplay += '🖤';
+            }
+            
+            document.getElementById('lives').textContent = heartsDisplay;
+            
+            // Debug log to console
+            console.log('Current lives:', lives, 'Display:', heartsDisplay);
+        }
+
+        function gameOver() {
+            clearInterval(timerInterval);
+            document.getElementById('gameScreen').classList.add('hidden');
+            document.getElementById('gameOverScreen').classList.remove('hidden');
+            document.getElementById('finalScore').textContent = score + ' Points';
+            
+            let performance = '';
+            if (score >= 100) performance = '🏆 BREED EXPERT! Amazing work!';
+            else if (score >= 50) performance = '⭐ Great job! You know your breeds!';
+            else if (score >= 25) performance = '👍 Good start! Keep practicing!';
+            else performance = '📚 Keep studying! You\'ll get there!';
+            
+            document.getElementById('performance').textContent = performance;
+        }
+
+        function restartGame() {
+            document.getElementById('gameOverScreen').classList.add('hidden');
+            startGame();
+        }
+    </script>
+</body>
+</html>
